@@ -1,21 +1,22 @@
 "use client";
 
-import React from "react";
-import { useAtom, useAtomValue } from "jotai";
-import { currentSideBarNav, sideBarNav } from "../../jotai/dashboard";
+import React, { useEffect } from "react";
+import { useAtomValue } from "jotai";
+import { sideBarNav } from "../../jotai/dashboard";
 import Link from "next/link";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function SideBarWeb() {
+export default function SideBarWeb({
+  jotaiCurrentSideBarNav,
+  setJotaiCurrentSideBarNav,
+}) {
   const jotaiSideBarNav = useAtomValue(sideBarNav);
-  const [jotaiCurrentSideBarNav, setJotaiCurrentSideBarNav] =
-    useAtom(currentSideBarNav);
 
   return (
-    <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
+    <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-56 lg:flex-col">
       <div className="flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-white px-6">
         <div className="flex h-16 shrink-0 items-center">
           <img
@@ -45,7 +46,7 @@ export default function SideBarWeb() {
                         item.name == jotaiCurrentSideBarNav
                           ? "bg-gray-50 text-indigo-600"
                           : "text-gray-700 hover:text-indigo-600 hover:bg-gray-50",
-                        "group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
+                        "group flex gap-x-3 rounded-md p-2 text-xs leading-6 font-semibold"
                       )}
                     >
                       <item.icon
@@ -53,7 +54,7 @@ export default function SideBarWeb() {
                           item.name == jotaiCurrentSideBarNav
                             ? "text-indigo-600"
                             : "text-gray-400 group-hover:text-indigo-600",
-                          "h-6 w-6 shrink-0"
+                          "h-5 w-5 shrink-0"
                         )}
                         aria-hidden="true"
                       />

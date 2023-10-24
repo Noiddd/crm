@@ -1,17 +1,18 @@
 "use client";
 
-import { currentSideBarNav, sideBarNav } from "@/jotai/dashboard";
-import { useAtom, useAtomValue } from "jotai";
+import { sideBarNav } from "@/jotai/dashboard";
+import { useAtomValue } from "jotai";
 import Link from "next/link";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function SideBarMobile() {
+export default function SideBarMobile({
+  jotaiCurrentSideBarNav,
+  setJotaiCurrentSideBarNav,
+}) {
   const jotaiSideBarNav = useAtomValue(sideBarNav);
-  const [jotaiCurrentSideBarNav, setJotaiCurrentSideBarNav] =
-    useAtom(currentSideBarNav);
 
   return (
     <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-white px-6 pb-2">
@@ -43,7 +44,7 @@ export default function SideBarMobile() {
                       item.name == jotaiCurrentSideBarNav
                         ? "bg-gray-50 text-indigo-600"
                         : "text-gray-700 hover:text-indigo-600 hover:bg-gray-50",
-                      "group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
+                      "group flex gap-x-3 rounded-md p-2 text-xs leading-6 font-semibold"
                     )}
                   >
                     <item.icon
@@ -51,7 +52,7 @@ export default function SideBarMobile() {
                         item.name == jotaiCurrentSideBarNav
                           ? "text-indigo-600"
                           : "text-gray-400 group-hover:text-indigo-600",
-                        "h-6 w-6 shrink-0"
+                        "h-5 w-5 shrink-0"
                       )}
                       aria-hidden="true"
                     />

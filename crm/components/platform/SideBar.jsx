@@ -1,13 +1,13 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 
 import { useAtom } from "jotai";
-import { sideBarOpen } from "../../jotai/dashboard";
+import { currentSideBarNav, sideBarOpen } from "../../jotai/dashboard";
 
 import SideBarWeb from "../../components/platform/SideBarWeb";
 import SideBarMobile from "../../components/platform/SideBarMobile";
@@ -15,6 +15,9 @@ import SideBarMobileHeader from "../../components/platform/SideBarMobileHeader";
 
 export default function SideBar() {
   const [sidebarOpen, setSidebarOpen] = useAtom(sideBarOpen);
+
+  const [jotaiCurrentSideBarNav, setJotaiCurrentSideBarNav] =
+    useAtom(currentSideBarNav);
 
   return (
     <>
@@ -46,7 +49,7 @@ export default function SideBar() {
               leaveFrom="translate-x-0"
               leaveTo="-translate-x-full"
             >
-              <Dialog.Panel className="relative mr-16 flex w-full max-w-xs flex-1">
+              <Dialog.Panel className="relative mr-16 flex w-full max-w-[224px] flex-1">
                 <Transition.Child
                   as={Fragment}
                   enter="ease-in-out duration-300"
@@ -70,8 +73,12 @@ export default function SideBar() {
                     </button>
                   </div>
                 </Transition.Child>
+
                 {/* Sidebar component for mobile view */}
-                <SideBarMobile />
+                <SideBarMobile
+                  jotaiCurrentSideBarNav={jotaiCurrentSideBarNav}
+                  setJotaiCurrentSideBarNav={setJotaiCurrentSideBarNav}
+                />
               </Dialog.Panel>
             </Transition.Child>
           </div>
@@ -79,7 +86,10 @@ export default function SideBar() {
       </Transition.Root>
 
       {/* Static sidebar for desktop */}
-      <SideBarWeb />
+      <SideBarWeb
+        jotaiCurrentSideBarNav={jotaiCurrentSideBarNav}
+        setJotaiCurrentSideBarNav={setJotaiCurrentSideBarNav}
+      />
 
       {/* Header component for mobile view */}
       <SideBarMobileHeader />

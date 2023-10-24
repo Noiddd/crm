@@ -1,4 +1,5 @@
 import { atom } from "jotai";
+import { atomWithStorage } from "jotai/utils";
 import { CalendarIcon, HomeIcon, UsersIcon } from "@heroicons/react/24/outline";
 
 export const sideBarNav = atom([
@@ -17,6 +18,6 @@ export const sideBarNav = atom([
   },
 ]);
 
-export const currentSideBarNav = atom("Dashboard");
+export const currentSideBarNav = atomWithStorage("currentNav", "");
 
 export const sideBarOpen = atom(false);
