@@ -7,6 +7,8 @@ import { useEffect, useState } from "react";
 
 import { useRouter } from "next/navigation";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import { useAtom } from "jotai";
+import { currentSideBarNav } from "@/jotai/dashboard";
 
 export default function UserLoginForm({ className, ...props }) {
   const [isLoading, setIsLoading] = useState(false);
@@ -17,6 +19,9 @@ export default function UserLoginForm({ className, ...props }) {
 
   const router = useRouter();
   const supabaseClient = createClientComponentClient();
+
+  const [jotaiCurrentSideBarNav, setJotaiCurrentSideBarNav] =
+    useAtom(currentSideBarNav);
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -37,6 +42,7 @@ export default function UserLoginForm({ className, ...props }) {
       supabaseClient.auth.onAuthStateChange((event, session) => {
         if (event == "SIGNED_IN") {
           router.push("/platform/dashboard");
+          setJotaiCurrentSideBarNav("Dashboard");
         }
       });
     } catch (error) {
@@ -49,8 +55,11 @@ export default function UserLoginForm({ className, ...props }) {
     supabaseClient.auth.onAuthStateChange((event, session) => {
       if (event == "SIGNED_IN") {
         router.push("/platform/dashboard");
+        setJotaiCurrentSideBarNav("Dashboard");
       }
     });
+    console.log("--UserLoginForm--");
+    console.log("redirect to dashboard");
   }, []);
 
   return (
