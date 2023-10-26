@@ -183,7 +183,7 @@ const data = [
   },
 ];
 
-export default function Client() {
+export default function ClientView() {
   const [sorting, setSorting] = useState([]);
   const [columnFilters, setColumnFilters] = useState([]);
   const [columnVisibility, setColumnVisibility] = useState({});

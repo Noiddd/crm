@@ -1,23 +1,22 @@
 import { atom } from "jotai";
-import { atomWithStorage } from "jotai/utils";
 import { CalendarIcon, HomeIcon, UsersIcon } from "@heroicons/react/24/outline";
 
 export const sideBarNav = atom([
   {
-    name: "Dashboard",
+    name: "dashboard",
     href: "/platform/dashboard",
     icon: HomeIcon,
     current: true,
   },
-  { name: "Client", href: "/platform/client", icon: UsersIcon, current: false },
+  { name: "client", href: "/platform/client", icon: UsersIcon, current: false },
   {
-    name: "Calendar",
-    href: "/platform/calender/month",
+    name: "calender",
+    href: "/platform/calender",
     icon: CalendarIcon,
     current: false,
   },
 ]);
 
-export const currentSideBarNav = atomWithStorage("currentNav", "");
+export const currentSideBarNav = atom("");
 
 export const sideBarOpen = atom(false);

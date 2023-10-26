@@ -1,5 +1,5 @@
 "use client";
 
-export default function Example() {
+export default function DashboardView() {
   return <div>Dashboard</div>;
 }

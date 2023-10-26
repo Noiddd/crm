@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 
 import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
@@ -12,12 +12,19 @@ import { currentSideBarNav, sideBarOpen } from "../../jotai/dashboard";
 import SideBarWeb from "../../components/platform/SideBarWeb";
 import SideBarMobile from "../../components/platform/SideBarMobile";
 import SideBarMobileHeader from "../../components/platform/SideBarMobileHeader";
+import { useParams } from "next/navigation";
 
 export default function SideBar() {
   const [sidebarOpen, setSidebarOpen] = useAtom(sideBarOpen);
 
   const [jotaiCurrentSideBarNav, setJotaiCurrentSideBarNav] =
     useAtom(currentSideBarNav);
+
+  const params = useParams();
+
+  useEffect(() => {
+    setJotaiCurrentSideBarNav(params.view);
+  }, []);
 
   return (
     <>
