@@ -13,6 +13,12 @@ import {
 } from "@/components/ui/table";
 
 export default function DataTable({ table, columns }) {
+  console.log("tableHeader");
+  console.log(table.getHeaderGroups()[0].headers[0].getSize());
+  console.log("tableHead");
+  console.log("tableBody");
+  console.log("tableCell");
+
   return (
     <div className="rounded-md border">
       <Table>

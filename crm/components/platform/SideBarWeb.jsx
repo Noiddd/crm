@@ -15,10 +15,6 @@ export default function SideBarWeb({
 }) {
   const jotaiSideBarNav = useAtomValue(sideBarNav);
 
-  console.log("INNN");
-  console.log(jotaiSideBarNav);
-  console.log(jotaiCurrentSideBarNav);
-
   return (
     <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-56 lg:flex-col">
       <div className="flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-white px-6">

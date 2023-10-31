@@ -4,7 +4,7 @@ export default function RootLayout({ children }) {
   return (
     <div>
       <SideBar />
-      <main className="py-10 lg:pl-56">
+      <main className="py-5 lg:pl-56">
         <div className="px-4 sm:px-6 lg:px-8">{children}</div>
       </main>
     </div>

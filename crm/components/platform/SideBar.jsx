@@ -24,7 +24,7 @@ export default function SideBar() {
 
   useEffect(() => {
     setJotaiCurrentSideBarNav(params.view);
-  }, []);
+  }, [params.view]);
 
   return (
     <>

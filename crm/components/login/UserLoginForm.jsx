@@ -42,7 +42,7 @@ export default function UserLoginForm({ className, ...props }) {
       supabaseClient.auth.onAuthStateChange((event, session) => {
         if (event == "SIGNED_IN") {
           router.push("/platform/dashboard");
-          setJotaiCurrentSideBarNav("Dashboard");
+          setJotaiCurrentSideBarNav("dashboard");
         }
       });
     } catch (error) {
@@ -51,16 +51,16 @@ export default function UserLoginForm({ className, ...props }) {
   };
 
   // if user comes into login with a session already running, will redirect to dashboard
-  useEffect(() => {
-    supabaseClient.auth.onAuthStateChange((event, session) => {
-      if (event == "SIGNED_IN") {
-        router.push("/platform/dashboard");
-        setJotaiCurrentSideBarNav("Dashboard");
-      }
-    });
-    console.log("--UserLoginForm--");
-    console.log("redirect to dashboard");
-  }, []);
+  // useEffect(() => {
+  //   supabaseClient.auth.onAuthStateChange((event, session) => {
+  //     if (event == "SIGNED_IN") {
+  //       router.push("/platform/dashboard");
+  //       setJotaiCurrentSideBarNav("dashboard");
+  //     }
+  //   });
+  //   console.log("--UserLoginForm--");
+  //   console.log("redirect to dashboard");
+  // }, []);
 
   return (
     <>

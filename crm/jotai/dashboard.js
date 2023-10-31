@@ -6,14 +6,12 @@ export const sideBarNav = atom([
     name: "dashboard",
     href: "/platform/dashboard",
     icon: HomeIcon,
-    current: true,
   },
-  { name: "client", href: "/platform/client", icon: UsersIcon, current: false },
+  { name: "client", href: "/platform/client", icon: UsersIcon },
   {
     name: "calender",
     href: "/platform/calender",
     icon: CalendarIcon,
-    current: false,
   },
 ]);
 
